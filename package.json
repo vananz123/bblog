@@ -1,9 +1,7 @@
 {
   "name": "webt",
   "version": "1.0.0",
-  "engines": {
-    "node": "12.18.4"
-  },
+  "engines": { "node": "16.x" },
   "description": "",
   "main": "src/index.js",
   "dependencies": {
