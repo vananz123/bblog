@@ -1,7 +1,7 @@
 const path =require('path')
 const express=require('express')
 const hbs  = require('express-handlebars')
-const port =3000;
+const PORT = process.env.PORT || 3000;
 const app = express();
 const route =require('./routes')
 const db=require('./config/db')
@@ -55,8 +55,8 @@ app.use(function(req, res, next) {
 route(app);
 
 
-app.listen(port, () => {
-  console.log(`App listening on port ${port}`)
+app.listen(PORT, () => {
+  console.log(`App listening on port ${PORT}`)
 })
 
 
