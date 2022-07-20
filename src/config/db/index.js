@@ -8,18 +8,16 @@
 //     }
 // }
 // module.exports ={connect}
-
-const mongoAtlasUri = "mongodb+srv://vananz:<password>@cluster0.shsiivx.mongodb.net/?retryWrites=true&w=majority";
 async function connect(){
-    try {
-        // Connect to the MongoDB cluster
-        mongoose.connect(
-            mongoAtlasUri,
-            { useNewUrlParser: true, useUnifiedTopology: true },
-            () => console.log(" Mongoose blog mindx is connected")
-        );
-    } catch (e) {
-        console.log("could not connect");
-    }
+    const { MongoClient, ServerApiVersion } = require('mongodb');
+    const uri = "mongodb+srv://vananz:<password>@cluster0.shsiivx.mongodb.net/?retryWrites=true&w=majority";
+    const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+    client.connect(err => {
+    const collection = client.db("test").collection("devices");
+    // perform actions on the collection object
+    client.close();
+    });
+
 }
 module.exports ={connect}
+

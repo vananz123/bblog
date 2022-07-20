@@ -4,7 +4,7 @@ const hbs  = require('express-handlebars')
 const PORT = process.env.PORT || 3000;
 const app = express();
 const route =require('./routes')
-const db=require('./config/db')
+//const db=require('./config/db')
 const methodOverride = require('method-override')
 const session = require('express-session')
 const cookieParser = require('cookie-parser')
@@ -34,7 +34,17 @@ app.use(session({
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'resources', 'views'));
 // connect db
-db.connect()
+//db.connect()
+
+const { MongoClient, ServerApiVersion } = require('mongodb');
+const uri = "mongodb+srv://vananz:<password>@cluster0.shsiivx.mongodb.net/?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
+});
+
 //middeware trả user ra all view cần fix lôi bảo mật password 
 app.use(function(req, res, next) {
   try{
