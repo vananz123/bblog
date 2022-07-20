@@ -6,8 +6,8 @@ const app = express();
 const route =require('./routes')
 const db=require('./config/db')
 const methodOverride = require('method-override')
-const session = require('express-session')
-const MongoStore = require('connect-mongo')(session)
+//const session = require('express-session')
+const session = require('cookie-session')
 const cookieParser = require('cookie-parser')
 const jwt =require('jsonwebtoken')
 const Users =require('./app/models/Users')
@@ -30,9 +30,7 @@ app.use(session({
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: false },
-  secret: 'foo',
-  store: new MongoStore(options)
+  cookie: { secure: false }
 }))
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'resources', 'views'));

@@ -1,12 +1,15 @@
 {
   "name": "bblog",
   "version": "1.0.0",
-  "engines": { "node": "16.x" },
+  "engines": {
+    "node": "16.x"
+  },
   "description": "",
   "main": "src/index.js",
   "dependencies": {
     "ckeditor4": "^4.19.0",
     "cookie-parser": "^1.4.6",
+    "cookie-session": "^2.0.0",
     "express": "^4.18.1",
     "express-handlebars": "^6.0.6",
     "express-session": "^1.17.3",
