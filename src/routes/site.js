@@ -1,0 +1,15 @@
+const express = require('express')
+const router = express.Router()
+const siteController =require('../app/controllers/SiteController')
+const loginController =require('../app/controllers/LoginController')
+const usersController =require('../app/controllers/UsersController')
+const middleware = require('../utils/middleware')
+router.get('/register',usersController.register)
+router.post('/register',usersController.checkUser,usersController.checkUser1)
+router.get('/login',loginController.index)
+router.post('/login',loginController.index1)
+router.get('/logout',loginController.logout)
+
+router.get('/search',siteController.search)
+router.get('/',siteController.index)
+module.exports =router

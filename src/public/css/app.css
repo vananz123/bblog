@@ -1,0 +1,56 @@
+#card_hover {
+  transition: transform .2s; }
+
+#card_hover:hover {
+  transform: scale(1.3); }
+
+.container.login {
+  position: absolute; }
+
+div.container.show {
+  margin-top: 16rem !important;
+  width: 700px !important; }
+
+.container.show .contentframe {
+  width: 100%; }
+
+.container.show .contentframe > div,
+.container.show .contentframe > div > img {
+  width: 100%; }
+
+.jumbotron {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  margin-bottom: 0;
+  background-color: #fff; }
+
+@media (min-width: 768px) {
+  .jumbotron {
+    padding-top: 6rem;
+    padding-bottom: 6rem; } }
+
+.jumbotron p:last-child {
+  margin-bottom: 0; }
+
+.jumbotron h1 {
+  font-weight: 300; }
+
+.jumbotron .container {
+  max-width: 40rem; }
+
+footer {
+  padding-top: 3rem;
+  padding-bottom: 3rem; }
+
+footer p {
+  margin-bottom: .25rem; }
+
+.container.add_content {
+  margin-top: 6rem;
+  margin-bottom: 3rem; }
+
+.add_conten div.btn_add_content {
+  width: 12rem;
+  height: 6rem;
+  border-radius: 3rem;
+  border: black solid 2px; }

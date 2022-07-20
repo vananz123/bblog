@@ -1,0 +1,47 @@
+{
+  "name": "webt",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "dependencies": {
+    "ckeditor4": "^4.19.0",
+    "cookie-parser": "^1.4.6",
+    "express": "^4.18.1",
+    "express-handlebars": "^6.0.6",
+    "express-session": "^1.17.3",
+    "handlebars": "^4.7.7",
+    "jsonwebtoken": "^8.5.1",
+    "method-override": "^3.0.0",
+    "mongodb": "^4.7.0",
+    "mongoose": "^6.4.3",
+    "mongoose-delete": "^0.5.4",
+    "mongoose-slug-generator": "^1.0.4",
+    "mongoose-slug-updater": "^3.3.0",
+    "node-sass": "^7.0.1"
+  },
+  "devDependencies": {
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "nodemon": "^2.0.19",
+    "prettier": "^2.7.1"
+  },
+  "scripts": {
+    "start": "nodemon src/index.js",
+    "watch": "node-sass src/resources/scss/app.scss src/public/css/app.css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vananz123/bblog.git"
+  },
+  "keywords": [
+    "web",
+    "an"
+  ],
+  "author": "an",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vananz123/bblog/issues"
+  },
+  "homepage": "https://github.com/vananz123/bblog#readme"
+}
