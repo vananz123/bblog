@@ -31,6 +31,7 @@
   },
   "scripts": {
     "start": "node src/index.js",
+    "startDev":"nodemon src/index.js",
     "watch": "node-sass src/resources/scss/app.scss src/public/css/app.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -40,9 +40,8 @@ const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = "mongodb+srv://vananz:mn112233@cluster0.shsiivx.mongodb.net/?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 client.connect(err => {
-const collection = client.db("test").collection("devices");
-// perform actions on the collection object
-client.close();
+  console.log('ko ket noi dc')
+  client.close();
 })
 //middeware trả user ra all view cần fix lôi bảo mật password 
 app.use(function(req, res, next) {
