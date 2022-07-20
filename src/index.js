@@ -35,14 +35,8 @@ app.use(session({
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'resources', 'views'));
 // connect db
-//db.connect()
-const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://vananz:mn112233@cluster0.shsiivx.mongodb.net/?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
-client.connect(err => {
-  console.log('ko ket noi dc')
-  client.close();
-})
+db.connect()
+
 //middeware trả user ra all view cần fix lôi bảo mật password 
 app.use(function(req, res, next) {
   try{
