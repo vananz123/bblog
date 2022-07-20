@@ -34,7 +34,7 @@ app.use(session({
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'resources', 'views'));
 // connect db
-//db.connect()
+db.connect()
 //middeware trả user ra all view cần fix lôi bảo mật password 
 app.use(function(req, res, next) {
   try{
