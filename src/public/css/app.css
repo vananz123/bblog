@@ -15,8 +15,9 @@ div.container.show {
   width: 100%; }
 
 .container.show .contentframe > div,
-.container.show .contentframe > div > img {
-  width: 100%; }
+.container.show .contentframe > div > img,
+.container.show .contentframe > div > p > img {
+  width: 100% !important; }
 
 .jumbotron {
   padding-top: 3rem;

@@ -7,10 +7,10 @@ const route =require('./routes')
 const db=require('./config/db')
 const methodOverride = require('method-override')
 const session = require('express-session')
-// const session = require('cookie-session')
 const cookieParser = require('cookie-parser')
 const jwt =require('jsonwebtoken')
 const Users =require('./app/models/Users')
+require('dotenv').config()
 app.engine('hbs', hbs.engine({
   extname: ".hbs",
   helpers: {
@@ -36,7 +36,13 @@ app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'resources', 'views'));
 // connect db
 db.connectDB()
-
+const cloudinary = require('cloudinary')
+cloudinary.config({
+  cloud_name: 'dg3ozy1rg',
+  api_key: '279553511589541',
+  api_secret:'6u93kMrTz4RRZrAYfphJ1dwMIoE',
+  secure: false
+})
 //middeware trả user ra all view cần fix lôi bảo mật password 
 //cais nay se chay dau tien
 app.use(function(req, res, next) {

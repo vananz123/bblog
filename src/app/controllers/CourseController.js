@@ -1,6 +1,8 @@
 const Course = require('../models/Course')
 const Users =require('../models/Users')
 const jwt =require('jsonwebtoken')
+const upload = require('../handlers/upload.multer') 
+const cloudinary = require('cloudinary').v2
 class CourseController {
     //[get] /course/:id/show
     findUserCreate(req,res,next){
@@ -24,15 +26,21 @@ class CourseController {
     create(req,res){
         res.render('course/create')
     }
-    store(req,res){
+    async store(req,res){
+        const result =await cloudinary.uploader.upload(req.file.path) 
         const course =new Course({
             title:  req.body.title,
             body: req.body.body,
             subject:req.body.subject,
-            iduser:req.iduser
+            iduser:req.iduser,
+            img:result.secure_url 
         })
         course.save()
-            .then(()=> res.redirect('/'))
+            .then(()=>{
+                console.log(req.file)
+                console.log(result.secure_url)
+                res.redirect('/')
+            })
             .catch((error)=>{
 
             })
