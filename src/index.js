@@ -6,8 +6,8 @@ const app = express();
 const route =require('./routes')
 const db=require('./config/db')
 const methodOverride = require('method-override')
-//const session = require('express-session')
-const session = require('cookie-session')
+const session = require('express-session')
+// const session = require('cookie-session')
 const cookieParser = require('cookie-parser')
 const jwt =require('jsonwebtoken')
 const Users =require('./app/models/Users')
@@ -35,10 +35,12 @@ app.use(session({
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'resources', 'views'));
 // connect db
-db.connectdb()
+db.connectDB()
 
 //middeware trả user ra all view cần fix lôi bảo mật password 
+//cais nay se chay dau tien
 app.use(function(req, res, next) {
+  app.locals.user =null
   try{
     var token =req.session.checkLogin
     const iduser =jwt.verify(token,'mk')
@@ -53,10 +55,8 @@ app.use(function(req, res, next) {
   }catch{
       return next()
   }
-  next()
 })
 route(app);
-
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`)

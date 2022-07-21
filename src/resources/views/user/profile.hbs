@@ -1,8 +1,52 @@
 
-<div class="container show">
-    <div class="contentframe">
+<div class="container-fluid px-4">
+    <div class="row">
+       <form method="post" action="/user/update">
         <h5>Thông tin cá nhân</h5>
-        <p>{{user.email}}</p>
-        <p>{{fullname user.firstname user.lastname}}</p>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <div class="input-group mb-3">
+                     
+                    <input type="text" class="form-control"  id="email" aria-describedby="emailHelp" name="email" value="{{user.email}}" disabled="true">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button">Sửa</button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email">Firstname</label>
+                <div class="input-group mb-3">
+                     
+                    <input type="text" class="form-control" id="firstname" aria-describedby="emailHelp" name="firstname" required="true" value="{{user.firstname}}"disabled="true">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button">Sửa</button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email">Lastname</label>
+                <div class="input-group mb-3">
+                     
+                    <input type="text" class="form-control" id="lastname" aria-describedby="emailHelp" name="lastname" required="true" value="{{user.lastname}}" disabled="true">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button">Sửa</button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit" data-toggle="modal" data-target="#update_profile">Lưu</button>
+            </div>
+        </form>
+        </div>
     </div>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded',(event)=>{
+        $('.btn.btn-outline-secondary').click((e)=>{
+            const inputP =e.target.parentNode.parentNode
+            $(inputP).children('input').attr({'disabled':false}) 
+            
+        })
+        
+    })
+</script>

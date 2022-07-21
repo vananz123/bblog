@@ -32,5 +32,10 @@ class UsersController{
 
             })
     }
+    update(req,res,next){
+        Users.updateOne({_id:req.iduser},req.body).lean()
+            .then( ()=> res.redirect('/user/profile'))
+            .catch(err=>{})
+    }
 }
 module.exports =new UsersController
