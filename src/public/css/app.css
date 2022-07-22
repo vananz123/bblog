@@ -7,16 +7,23 @@
 .container.login {
   position: absolute; }
 
-div.container.show {
+div.show_layout {
+  width: 100%;
+  display: flex; }
+
+div.show_layout .left_show {
+  width: 4rem; }
+
+div.show_layout .left_show p {
+  font-size: xx-large; }
+
+div.contentframe {
   margin-top: 16rem !important;
-  width: 700px !important; }
+  width: 70% !important; }
 
-.container.show .contentframe {
-  width: 100%; }
-
-.container.show .contentframe > div,
-.container.show .contentframe > div > img,
-.container.show .contentframe > div > p > img {
+.contentframe > div,
+.contentframe > div > img,
+.contentframe > div > p > img {
   width: 100% !important; }
 
 .jumbotron {

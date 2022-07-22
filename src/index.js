@@ -38,9 +38,9 @@ app.set('views', path.join(__dirname, 'resources', 'views'));
 db.connectDB()
 const cloudinary = require('cloudinary')
 cloudinary.config({
-  cloud_name: 'dg3ozy1rg',
-  api_key: '279553511589541',
-  api_secret:'6u93kMrTz4RRZrAYfphJ1dwMIoE',
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret:process.env.API_SECRET,
   secure: false
 })
 //middeware trả user ra all view cần fix lôi bảo mật password 
