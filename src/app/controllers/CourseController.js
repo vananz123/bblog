@@ -17,6 +17,12 @@ class CourseController {
             res.json('user ko khop voi course')
         }
     }
+    connectIo(req,res,next){
+        res.io.on('connection' ,(socket)=>{
+            console.log('user connet')
+        })
+        next()
+    }
     show(req,res,next){
         const courses =req.course
         Users.findById(courses.iduser).lean()
@@ -27,23 +33,51 @@ class CourseController {
         res.render('course/create')
     }
     async store(req,res){
-        const result =await cloudinary.uploader.upload(req.file.path) 
-        const course =new Course({
-            title:  req.body.title,
-            body: req.body.body,
-            subject:req.body.subject,
-            iduser:req.iduser,
-            img:result.secure_url 
-        })
-        course.save()
+        var subjectInput=""
+        switch (req.body.subject){
+            case "1":
+                subjectInput ="Thể thao"
+                break
+            case "2":
+                subjectInput ="Văn hóa"
+                break
+            case "3":
+                subjectInput ="Nghề nghiệp"
+                break
+            default:
+                subjectInput ="Khác"
+        }
+        try{
+            const result =await cloudinary.uploader.upload(req.file.path) 
+            const course =new Course({
+                title:  req.body.title,
+                body: req.body.body,
+                subject:subjectInput,
+                iduser:req.iduser,
+                img:result.secure_url 
+            })
+            course.save()
             .then(()=>{
-                console.log(req.file)
-                console.log(result.secure_url)
                 res.redirect('/')
             })
             .catch((error)=>{
 
             })
+        }catch{
+            const course =new Course({
+                title:  req.body.title,
+                body: req.body.body,
+                subject:subjectInput,
+                iduser:req.iduser
+            })
+            course.save()
+            .then(()=>{
+                res.redirect('/')
+            })
+            .catch((error)=>{
+
+            })
+        }
     }
     //[get] /course/:id/edit
     edit(req,res,next){

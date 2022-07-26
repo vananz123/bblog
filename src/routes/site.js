@@ -11,5 +11,6 @@ router.post('/login',loginController.index1)
 router.get('/logout',loginController.logout)
 
 router.get('/search',siteController.search)
+router.get('/:page',siteController.index)
 router.get('/',siteController.index)
 module.exports =router

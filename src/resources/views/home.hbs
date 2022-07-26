@@ -1,31 +1,369 @@
-<div>
-    <div class="container add_content">
-        <h2>Tạo vào chia sẽ bài viết của bạn</h2>
-        <div>
-            <button type="button" class="btn btn-outline-dark" onclick="window.location='course/create'">Đăng bài viết</button>
-        </div>
+<div class="hero_area">
+    <div class="bg-box">
+      <img src="img/hero-bg.jpg" alt="">
     </div>
-</div>
-<div class="album py-5 bg-light">
-    <div class="container">
-      <div class="row">
-        <h2>Bài viết mới nhất</h2>
-        {{#each courses}}
-        <div class="col-md-4" onclick="window.location='/course/{{this.slug}}';">
-            <div class="card mb-4 shadow-sm">
-                <img src="{{this.img}}"/>
-                <div class="card-body">
-                <p class="card-text">{{this.title}}</p>
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
+    <!-- slider section -->
+    <section class="slider_section ">
+      <div id="customCarousel1" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="container ">
+              <div class="row">
+                <div class="col-md-7 col-lg-6 ">
+                  <div class="detail-box">
+                    <h1>
+                      Fast Food Restaurant
+                    </h1>
+                    <p>
+                      Doloremque, itaque aperiam facilis rerum, commodi, temporibus sapiente ad mollitia laborum quam quisquam esse error unde. Tempora ex doloremque, labore, sunt repellat dolore, iste magni quos nihil ducimus libero ipsam.
+                    </p>
+                    <div class="btn-box">
+                      <a href="" class="btn1">
+                        Order Now
+                      </a>
                     </div>
-                    <small class="text-muted">9 mins</small>
+                  </div>
                 </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item ">
+            <div class="container ">
+              <div class="row">
+                <div class="col-md-7 col-lg-6 ">
+                  <div class="detail-box">
+                    <h1>
+                      Fast Food Restaurant
+                    </h1>
+                    <p>
+                      Doloremque, itaque aperiam facilis rerum, commodi, temporibus sapiente ad mollitia laborum quam quisquam esse error unde. Tempora ex doloremque, labore, sunt repellat dolore, iste magni quos nihil ducimus libero ipsam.
+                    </p>
+                    <div class="btn-box">
+                      <a href="" class="btn1">
+                        Order Now
+                      </a>
+                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
+          <div class="carousel-item">
+            <div class="container ">
+              <div class="row">
+                <div class="col-md-7 col-lg-6 ">
+                  <div class="detail-box">
+                    <h1>
+                      Fast Food Restaurant
+                    </h1>
+                    <p>
+                      Doloremque, itaque aperiam facilis rerum, commodi, temporibus sapiente ad mollitia laborum quam quisquam esse error unde. Tempora ex doloremque, labore, sunt repellat dolore, iste magni quos nihil ducimus libero ipsam.
+                    </p>
+                    <div class="btn-box">
+                      <a href="" class="btn1">
+                        Order Now
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-         {{/each}}
+          </div>
+        </div>
+        <div class="container">
+          <ol class="carousel-indicators">
+            <li data-target="#customCarousel1" data-slide-to="0" class="active"></li>
+            <li data-target="#customCarousel1" data-slide-to="1"></li>
+            <li data-target="#customCarousel1" data-slide-to="2"></li>
+          </ol>
+        </div>
       </div>
 
+    </section>
+    <!-- end slider section -->
+  </div>
+
+  <!-- food section -->
+
+  <section class="food_section layout_padding-bottom">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>
+          Our Menu
+        </h2>
+      </div>
+
+      <ul class="filters_menu">
+        <li class="active" data-filter="*">All</li>
+        <li data-filter=".pizza">Pizza</li>
+        <li data-filter=".pasta">Pasta</li>
+        <li data-filter=".fries">Fries</li>
+      </ul>
+
+      <div class="filters-content">
+        <div class="row grid">
+        {{#each courses}}
+          <div class="col-sm-6 col-lg-4 all" onclick="window.location='/course/{{this.slug}}'">
+            <div class="box">
+              <div>
+                <div class="img-box">
+                  <img src="{{this.img}}" alt="">
+                </div>
+                <div class="detail-box">
+                  <h5>
+                    {{this.title}}
+                  </h5>
+                  <p>
+                    <p>Tac gia</p>
+                  </p>
+                  <div class="options">
+                    <h6>
+                      $20
+                    </h6>
+                    <a href="">
+                      <i id="Capa_1">9m</i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {{/each}}
+
+        </div>
+      </div>
+    
     </div>
+  </section>
+  <div class="container">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center" id="pagiul">
+        {{!-- <li class="page-item disabled">
+          <a class="page-link" href="#" tabindex="-1">Previous</a>
+        </li>
+       
+        <li class="page-item">
+          <a class="page-link" href="">1</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="">2</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="">3</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#">Next</a>
+        </li> --}}
+      </ul>
+    </nav>
+  </div>
+  <!-- end food section -->
+  <!-- about section -->
+
+  <section class="about_section layout_padding">
+    <div class="container  ">
+
+      <div class="row">
+        <div class="col-md-6 ">
+          <div class="img-box">
+            <img src="/img/about-img.png" alt="">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="detail-box">
+            <div class="heading_container">
+              <h2>
+                We Are Feane
+              </h2>
+            </div>
+            <p>
+              There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
+              in some form, by injected humour, or randomised words which don't look even slightly believable. If you
+              are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in
+              the middle of text. All
+            </p>
+            <a href="">
+              Read More
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end about section -->
+
+  <!-- book section -->
+  <section class="book_section layout_padding">
+    <div class="container">
+      <div class="heading_container">
+        <h2>
+          Book A Table
+        </h2>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form_container">
+            <form action="">
+              <div>
+                <input type="text" class="form-control" placeholder="Your Name" />
+              </div>
+              <div>
+                <input type="text" class="form-control" placeholder="Phone Number" />
+              </div>
+              <div>
+                <input type="email" class="form-control" placeholder="Your Email" />
+              </div>
+              <div>
+                <select class="form-control nice-select wide">
+                  <option value="" disabled selected >
+                    How many persons?
+                  </option>
+                  <option value="">
+                    2
+                  </option>
+                  <option value="">
+                    3
+                  </option>
+                  <option value="">
+                    4
+                  </option>
+                  <option value="">
+                    5
+                  </option>
+                </select>
+              </div>
+              <div>
+                <input type="date" class="form-control">
+              </div>
+              <div class="btn_box">
+                <button>
+                  Book Now
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="map_container ">
+            <div id="googleMap"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
+  <!-- end book section -->
+
+  <!-- client section -->
+
+  <section class="client_section layout_padding-bottom">
+    <div class="container">
+      <div class="heading_container heading_center psudo_white_primary mb_45">
+        <h2>
+          What Says Our Customers
+        </h2>
+      </div>
+      <div class="carousel-wrap row ">
+        <div class="owl-carousel client_owl-carousel">
+          <div class="item">
+            <div class="box">
+              <div class="detail-box">
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+                </p>
+                <h6>
+                  Moana Michell
+                </h6>
+                <p>
+                  magna aliqua
+                </p>
+              </div>
+              <div class="img-box">
+                <img src="/img/client1.jpg" alt="" class="box-img">
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="box">
+              <div class="detail-box">
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+                </p>
+                <h6>
+                  Mike Hamell
+                </h6>
+                <p>
+                  magna aliqua
+                </p>
+              </div>
+              <div class="img-box">
+                <img src="/img/client2.jpg" alt="" class="box-img">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div id="pages_total" style="display: none;">{{pages}}</div>
+  <div id="pages_current" style="display: none;">{{current}}</div>
+  <script>
+    document.addEventListener('DOMContentLoaded',function(event){
+    function mm(a){
+      if(parseInt(a)== 1){
+        return "disabled"
+      }else{
+        return ""
+      }
+    }
+    function mm1(a,b){
+      if(a ==b){
+        return "disabled"
+      }else{
+        return ""
+      }
+    }
+    function mm2(a,b){
+      if(parseInt(a) ==b){
+        return "active"
+      }else{
+        return ""
+      }
+    }
+    
+    function load(){
+        $.ajax({
+          url:'/',
+          type:'GET'
+          })
+          .then(data=>{
+              const pages_total =document.getElementById('pages_total').innerText
+              const pages_current =document.getElementById('pages_current').innerText
+              const pagiul =document.getElementById('pagiul')
+              
+              for(var i=0;i<=parseInt(pages_total);i++){
+                const temp=`<li class="page-item ${mm2(pages_current,i+1)}">
+                              <a class="page-link" href="/${i+1}">${i+1}</a>
+                            </li>`
+                if(i==0){
+                  pagiul.innerHTML +=`<li class="page-item ${mm(pages_current)}">
+                                        <a class="page-link" href="/${parseInt(pages_current)-1}" tabindex="-1">Previous</a>
+                                      </li>`
+                }
+                if(i ==parseInt(pages_total)){
+                  pagiul.innerHTML +=`<li class="page-item ${mm1(pages_current,pages_total)}">
+                                        <a class="page-link" href="/${parseInt(pages_current)+1}" >Next</a>
+                                      </li>`
+                }else{
+                  pagiul.innerHTML +=temp
+                }
+              }
+          })
+          .catch(err=>{
+          })
+    }
+    load()
+    
+})
+  </script>

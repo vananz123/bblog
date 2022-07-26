@@ -10,6 +10,7 @@ const session = require('express-session')
 const cookieParser = require('cookie-parser')
 const jwt =require('jsonwebtoken')
 const Users =require('./app/models/Users')
+
 require('dotenv').config()
 app.engine('hbs', hbs.engine({
   extname: ".hbs",
@@ -51,6 +52,7 @@ app.use(function(req, res, next) {
     var token =req.session.checkLogin
     const iduser =jwt.verify(token,'mk')
     if(iduser){
+      
       Users.findById(iduser).lean()
         .then(data=>{
             app.locals.user =data;
@@ -62,12 +64,11 @@ app.use(function(req, res, next) {
       return next()
   }
 })
-route(app);
 
+route(app);
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`)
 })
-
 
 
 

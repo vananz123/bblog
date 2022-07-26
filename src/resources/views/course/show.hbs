@@ -1,20 +1,30 @@
-<div class="show_layout">
-    <div class="left_show">
-        <p><i class="fa-regular fa-heart"></i></p>
-        <p><i class="fa-regular fa-bookmark"></i></p>
-        <p><a><i class="fa-brands fa-facebook"></i></a></p>
+
+<div class="container">
+    <div class="show_layout">
+        <div class="left_show">
+            <p><i class="fa-regular fa-heart"></i></p>
+            <p><i class="fa-regular fa-comment"></i></p>
+            <p><a><i class="fa-brands fa-facebook"></i></a></p>
+        </div>
+        <div class="contentframe">
+            <p>Đề tài: {{courses.subject}}</p>
+            <h1>{{courses.title}}</h1>
+            <div class="author">
+                <h5>Tác giả: {{ fullname usermid.firstname usermid.lastname}}</h5>
+                <p>Ngày đăng: {{courses.createdAt}}</p>
+            </div>
+            <div>
+                <img src="{{courses.img}}"/>
+            </div>
+            <div>{{{courses.body}}}</div>
+        </div>
     </div>
-    <div class="contentframe">
-        <p>Đề tài: {{courses.subject}}</p>
-        <h1>{{courses.title}}</h1>
-        <div class="author">
-            <h5>Tác giả: {{ fullname usermid.firstname usermid.lastname}}</h5>
-            <p>Ngày đăng: {{courses.createdAt}}</p>
-        </div>
-        <div>
-            <img src="{{courses.img}}"/>
-        </div>
-        <div>{{{courses.body}}}</div>
+    <div class="comment_course">
+        <h5>Binh luan</h5>
+        <form action="" id="comment_form">
+            <textarea id="chat_text"></textarea>
+            <button type="submit" id="send-chat">Gui</button>
+        </form>
     </div>
 </div>
 

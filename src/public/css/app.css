@@ -9,7 +9,8 @@
 
 div.show_layout {
   width: 100%;
-  display: flex; }
+  display: flex;
+  margin-top: 10rem; }
 
 div.show_layout .left_show {
   width: 4rem; }
@@ -18,7 +19,7 @@ div.show_layout .left_show p {
   font-size: xx-large; }
 
 div.contentframe {
-  margin-top: 16rem !important;
+  margin-top: 8rem !important;
   width: 70% !important; }
 
 .contentframe > div,
