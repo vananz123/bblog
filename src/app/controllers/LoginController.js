@@ -17,7 +17,7 @@ class LoginController{
                 if(data){
                     var token =jwt.sign({_id:data._id},'mk')
                     req.session.checkLogin =token
-                    res.redirect('/')
+                    res.redirect('back')
                     res.end()
                     // return res.json({
                     //     mess:'thanh cong',

@@ -3,6 +3,7 @@ const Users =require('../models/Users')
 const jwt =require('jsonwebtoken')
 const upload = require('../handlers/upload.multer') 
 const cloudinary = require('cloudinary').v2
+const Comment =require('../models/Comment')
 class CourseController {
     //[get] /course/:id/show
     findUserCreate(req,res,next){
@@ -17,35 +18,53 @@ class CourseController {
             res.json('user ko khop voi course')
         }
     }
-    connectIo(req,res,next){
-        res.io.on('connection' ,(socket)=>{
-            console.log('user connet')
-        })
-        next()
+    showComment(req,res,next){
+        try{
+            Comment.find({idcourse:req.course._id}).lean()
+            .then(data =>{
+                req.comment =data
+                next()
+            })
+            .catch(next =>next(err))
+        }catch{
+            res.json('lôi tìm comment')
+        }
     }
     show(req,res,next){
-        const courses =req.course
-        Users.findById(courses.iduser).lean()
-            .then(usermid => res.render('course/show',{courses,usermid}))
+        const course =req.course
+        const comments= req.comment
+        
+        Users.findById(course.iduser).lean()
+            .then(usermid => res.render('course/show',{course,usermid,comments}))
             .catch(next =>next(err))
+    }
+    showAll(req,res,next){
+        let perPage = 4; // số lượng sản phẩm xuất hiện trên 1 page
+        let page = req.params.page || 1; 
+        Course.find({}).lean()
+            .skip((perPage * page) - perPage) // Trong page đầu tiên sẽ bỏ qua giá trị là 0
+            .limit(perPage)
+            .exec((err,courses)=>{
+                Course.countDocuments((err, count) => { // đếm để tính có bao nhiêu trang
+                    if (err) return next(err);
+                    res.render('course/showall', {
+                        courses, // sản phẩm trên một page
+                        current: page, // page hiện tại
+                        pages: Math.ceil(count / perPage) // tổng số các page
+                    });
+                  });
+            })
     }
     create(req,res){
         res.render('course/create')
     }
     async store(req,res){
         var subjectInput=""
-        switch (req.body.subject){
-            case "1":
-                subjectInput ="Thể thao"
-                break
-            case "2":
-                subjectInput ="Văn hóa"
-                break
-            case "3":
-                subjectInput ="Nghề nghiệp"
-                break
-            default:
-                subjectInput ="Khác"
+        const sub =["Thể thao","Văn hóa","Nghề nghiệp","Khác"]
+        for(let i=0;i<sub.length;i++){
+            if(parseInt(req.body.subject)-1==i){
+                subjectInput = sub[i]
+            }
         }
         try{
             const result =await cloudinary.uploader.upload(req.file.path) 

@@ -6,25 +6,132 @@
             <p><i class="fa-regular fa-comment"></i></p>
             <p><a><i class="fa-brands fa-facebook"></i></a></p>
         </div>
-        <div class="contentframe">
-            <p>Đề tài: {{courses.subject}}</p>
-            <h1>{{courses.title}}</h1>
+        <div class="contentframe" data-id-course="{{course._id}}">
+            <p>Đề tài: {{course.subject}}</p>
+            <h1>{{course.title}}</h1>
             <div class="author">
                 <h5>Tác giả: {{ fullname usermid.firstname usermid.lastname}}</h5>
-                <p>Ngày đăng: {{courses.createdAt}}</p>
+                <p>Ngày đăng: {{course.createdAt}}</p>
             </div>
             <div>
-                <img src="{{courses.img}}"/>
+                <img src="{{course.img}}"/>
             </div>
-            <div>{{{courses.body}}}</div>
+            <div>{{{course.body}}}</div>
         </div>
     </div>
     <div class="comment_course">
-        <h5>Binh luan</h5>
-        <form action="" id="comment_form">
-            <textarea id="chat_text"></textarea>
-            <button type="submit" id="send-chat">Gui</button>
+        <h5>Bình Luận</h5>
+        <form action="/course/{{course._id}}/comment" id="comment_form" method="post">
+             <div class="form-group">
+                <label for="chat_text">Viết bình luận của bạn</label>
+                <textarea class="form-control" id="chat_text" name="chat_text" rows="2"></textarea>
+            </div>
         </form>
+        <div class="container text-left">
+            {{#each comments}}
+          <div class="row">
+            <div class="col-sm-1">
+                <div class="img_user">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLhlPE0gXGOoAq3qU3GHKSS2Ih3VQDLzZ6GQ&usqp=CAU"/>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="info_user_content">
+                    <h5>{{fullname this.firstname this.lastname}}</h5>
+                    <p>{{this.content}}</p>
+                </div>
+                <div class="interaction_user" data-id="{{this._id}}">
+                    <span>thích</span>
+                    <span class="interaction_user_replay">
+                        <i class="fa-solid fa-reply"></i>
+                        Trả lời
+                    </span>
+                    <div class="comment_replay">
+                        <form  method="post">
+                             <div class="form-group">
+                                <label for="chat_text">Viết bình luận trả lời của bạn</label>
+                                <textarea class="form-control" id="chat_text" name="chat_text_r" rows="2"></textarea>
+                            </div>
+                            <button type="button" class="btn btn-primary close">Hủy</button>
+                        </form>
+                    </div>
+                    {{#if this.replay}}
+                        <div>
+                            <p>xem tra loi</p>
+                            {{#each this.replay}}
+                                <div class="row">
+                                    <div class="col-sm-1">
+                                        <div class="img_user">
+                                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLhlPE0gXGOoAq3qU3GHKSS2Ih3VQDLzZ6GQ&usqp=CAU"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <div class="info_user_content">
+                                            <h5>{{fullname this.firstnamer this.lastnamer}}</h5>
+                                            <p>{{this.contentr}}</p>
+                                        </div>
+                                        <div class="interaction_user" data-id="{{this._id}}">
+                                            <span>thích</span>
+                                            <!-- <span class="interaction_user_replay">
+                                                <i class="fa-solid fa-reply"></i>
+                                                Replay
+                                            </span>
+                                            <div class="comment_replay">
+                                                <form  method="post">
+                                                     <div class="form-group">
+                                                        <label for="chat_text">Viết bình luận trả lời của bạn</label>
+                                                        <textarea class="form-control" id="chat_text" name="chat_text_r" rows="2"></textarea>
+                                                    </div>
+                                                    <button type="button" class="btn btn-primary close">Hủy</button>
+                                                </form>
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                  </div>
+                            {{/each}}
+                        </div>
+                    {{else}}
+                    <div></div>
+                    {{/if}}
+                </div>
+            </div>
+          </div>
+           {{/each}}
+
+        </div>
     </div>
 </div>
+<script>
+    $('.comment_replay').hide()
+    const form_comment =document.forms['comment_form']
+    document.getElementById('chat_text').addEventListener('keypress',(event)=>{
+        if(event.keyCode == 13){
+            form_comment.submit()
+        }
+    }) 
+    const id_course =$('.contentframe').attr('data-id-course')
+    const interaction_user =document.querySelectorAll('div.col-sm-5 .interaction_user')
+    for(let i=0;i<interaction_user.length;i++){
+        var id_comment=null;
+        $(interaction_user[i]).children('.interaction_user_replay').click((e)=>{
+            id_comment = $(interaction_user[i]).attr('data-id')
+            console.log(id_comment)
+             $(interaction_user[i]).children('.comment_replay').show()
+        })
+        $(interaction_user[i]).children('.comment_replay').children().children('.btn.btn-primary.close').click(()=>{
+            $(interaction_user[i]).children('.comment_replay').hide()
+        })
+        $(interaction_user[i]).children('.comment_replay').children().children('.form-group').children('textarea').keypress((event)=>{
+            if(event.keyCode == 13){
+                $(interaction_user[i]).children('.comment_replay').children().attr('action',`/course/${id_course}/${id_comment}/replay`)
+               $(interaction_user[i]).children('.comment_replay').children().submit()
+            }
+
+        })
+
+    }
+   
+</script>
+
+
 
