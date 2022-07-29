@@ -53,7 +53,7 @@
                                 <label for="chat_text">Viết bình luận trả lời của bạn</label>
                                 <textarea class="form-control" id="chat_text" name="chat_text_r" rows="2"></textarea>
                             </div>
-                            <button type="submit" style="margin-left: 10px;" class="btn btn-primary close">Gửi</button>
+                            <button type="submit" style="margin-left: 10px;" class="btn btn-primary close submit">Gửi</button>
                             <button type="button" class="btn btn-primary close">Hủy</button>
                         </form>
                     </div>
@@ -122,6 +122,10 @@
         })
         $(interaction_user[i]).children('.comment_replay').children().children('.btn.btn-primary.close').click(()=>{
             $(interaction_user[i]).children('.comment_replay').hide()
+        })
+        $(interaction_user[i]).children('.comment_replay').children().children('.btn.btn-primary.close.submit').click(()=>{
+            $(interaction_user[i]).children('.comment_replay').children().attr('action',`/course/${id_course}/${id_comment}/replay`)
+            $(interaction_user[i]).children('.comment_replay').children().submit()
         })
         $(interaction_user[i]).children('.comment_replay').children().children('.form-group').children('textarea').keypress((event)=>{
             if(event.keyCode == 13){
