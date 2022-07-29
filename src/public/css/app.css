@@ -117,6 +117,9 @@ div.comment_user .info_user_content{
 div.comment_user .info_user_content p{
     word-wrap: break-word;
 }*/
+.container.text-left {
+  margin-top: 15px; }
+
 .row .col-sm-1 .img_user {
   width: 45px;
   height: 45px; }
