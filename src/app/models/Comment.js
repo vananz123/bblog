@@ -9,18 +9,18 @@ const CommentReplay =new Schema({
 const Comment = new Schema({
     idcourse:{type:String},
     content:  { type: String},
-    iduser: { type: String},
-    email: { type: String },
-    firstname: { type: String},
-    lastname: { type: String},
+    userId:{
+      type:mongoose.Schema.Types.ObjectId, ref: 'users'
+    },
     replay:{
-      contentr:{type:String},
-      firstnamer:{type:String},
-      lastnamer:{type:String}
+      content:{type:String},
+      userId:{
+      type:mongoose.Schema.Types.ObjectId, ref: 'users'
+      }
     }
 },{
-  timestamps:true,collection:'Comment'
+  timestamps:true,collection:'comment'
 });
 //add plugin 
 // Comment.plugin(mongoose_delete,{ deletedAt : true , overrideMethods: 'all'})
-module.exports =mongoose.model('Comment', Comment);
+module.exports =mongoose.model('comment', Comment);

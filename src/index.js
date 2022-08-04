@@ -1,7 +1,7 @@
 const path =require('path')
 const express=require('express')
 const hbs  = require('express-handlebars')
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 const app = express();
 const route =require('./routes')
 const db=require('./config/db')
@@ -16,7 +16,8 @@ app.engine('hbs', hbs.engine({
   extname: ".hbs",
   helpers: {
     sum(a,b){ return a+b;},
-    fullname(a,b){ return a+' '+ b;}
+    fullname(a,b){ return a+' '+ b;},
+    checkIdEdit(a,b){return a==b ? true:false}
   },
   partialsDir:path.join(__dirname,'resources', 'views','partials')
 }));

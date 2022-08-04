@@ -5,38 +5,32 @@ const upload = require('../handlers/upload.multer')
 const cloudinary = require('cloudinary').v2
 const Comment =require('../models/Comment')
 class CourseController {
-    //[get] /course/:id/show
-    findUserCreate(req,res,next){
+   
+    async findUserCreate(req,res,next){
         try{
-            Course.findOne({ slug:req.params.slug}).lean()
-            .then(courses =>{
-                req.course =courses
-                next()
-            })
-            .catch(next =>next(err))
+            const courses=await Course.findOne({ slug:req.params.slug}).lean().populate({path:'author' ,select:['img','firstname','lastname']})
+            req.course =courses
+            next()
         }catch{
             res.json('user ko khop voi course')
         }
     }
-    showComment(req,res,next){
+    async showComment(req,res,next){
         try{
-            Comment.find({idcourse:req.course._id}).lean()
-            .then(data =>{
-                req.comment =data
-                next()
-            })
-            .catch(next =>next(err))
+            const comments =await Comment.find({idcourse:req.course._id}).lean()
+            .populate({path:'author' ,select:['img','firstname','lastname']})
+            .populate({path:'replay.author'})
+            req.comments =comments
+            next()
         }catch{
-            res.json('lôi tìm comment')
+            next()
         }
     }
+     //[get] /course/:id/show
     show(req,res,next){
         const course =req.course
-        const comments= req.comment
-        
-        Users.findById(course.iduser).lean()
-            .then(usermid => res.render('course/show',{course,usermid,comments}))
-            .catch(next =>next(err))
+        const comments =req.comments
+        res.render('course/show',{course,comments})
     }
     showAll(req,res,next){
         let perPage = 4; // số lượng sản phẩm xuất hiện trên 1 page
@@ -59,20 +53,16 @@ class CourseController {
         res.render('course/create')
     }
     async store(req,res){
-        var subjectInput=""
-        const sub =["Thể thao","Văn hóa","Nghề nghiệp","Khác"]
-        for(let i=0;i<sub.length;i++){
-            if(parseInt(req.body.subject)-1==i){
-                subjectInput = sub[i]
-            }
-        }
+        
+        
+        
         try{
             const result =await cloudinary.uploader.upload(req.file.path) 
             const course =new Course({
                 title:  req.body.title,
                 body: req.body.body,
-                subject:subjectInput,
-                iduser:req.iduser,
+               
+                author:req.userlogin,
                 img:result.secure_url 
             })
             course.save()
@@ -86,8 +76,8 @@ class CourseController {
             const course =new Course({
                 title:  req.body.title,
                 body: req.body.body,
-                subject:subjectInput,
-                iduser:req.iduser
+                
+                author:req.userlogin
             })
             course.save()
             .then(()=>{
@@ -98,6 +88,14 @@ class CourseController {
             })
         }
     }
+    findCourse(req,res,next){
+        Course.findById(req.params.id).lean()
+            .then(courses => {
+                cloudinary.uploader.destroy(courses.img.slice(courses.img.lastIndexOf('/')+1,courses.img.length-4))
+                next()
+            } )
+            .catch(next =>res.json('loi'))
+    }
     //[get] /course/:id/edit
     edit(req,res,next){
         
@@ -106,6 +104,19 @@ class CourseController {
                 courses
             }))
             .catch(next =>next(err))
+    }
+    //[put] .course/:id/updateimg
+    async updateImg(req,res,next){
+        try{
+            const result = await cloudinary.uploader.upload(req.file.path)
+            Course.findOneAndUpdate({_id:req.params.id},{img:result.secure_url} ).lean()
+                .then(()=> res.redirect('/me/course'))
+                .catch((error)=>{
+
+                })
+        }catch{
+            res.json('loi')
+        }
     }
     //[put] /course/:id
     update(req,res,next){

@@ -6,12 +6,24 @@ class middleware{
             var token =req.session.checkLogin
             const iduser =jwt.verify(token,'mk')
             if(iduser){
-                req.iduser =iduser;
+                req.iduser =iduser
                 next()
             }
        }catch{
             return res.redirect('/login')
        }
+    }
+    findUserCreate(req,res,next){
+        try{
+            Users.findById(req.iduser).lean()
+            .then(userlogin =>{
+                req.userlogin =userlogin
+                next()
+            })
+            .catch(next =>next(err))
+        }catch{
+            res.json('user ko khop voi course')
+        }
     }
 }
 module.exports =new middleware

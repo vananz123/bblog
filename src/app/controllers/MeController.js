@@ -18,6 +18,11 @@ class MeController {
             }))
             .catch(next)
     }
+    bookmart(req,res,next){
+        Course.find({bookmart:{ $all: [req.iduser] }}).lean()
+            .then( courses => res.json(courses))
+            .catch(next)
+    }
 
 }
 module.exports =new MeController
