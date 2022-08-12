@@ -11,8 +11,10 @@ router.get('/login',loginController.index)
 router.post('/login',loginController.index1)
 router.get('/logout',loginController.logout)
 router.get('/showall/:page',courseController.showAll)
+router.get('/search/:page',siteController.search)
 router.get('/showall',courseController.showAll)
-router.get('/:slug',courseController.findUserCreate,courseController.showComment,courseController.show)
 router.get('/search',siteController.search)
+router.get('/:slug',middleware.loginNext,courseController.findUserCreate,courseController.showComment,courseController.show)
+
 router.get('/',siteController.index)
 module.exports =router

@@ -25,5 +25,17 @@ class middleware{
             res.json('user ko khop voi course')
         }
     }
+    loginNext(req,res,next){
+        try{
+            var token =req.session.checkLogin
+            const iduser =jwt.verify(token,'mk')
+            if(iduser){
+                req.iduser =iduser
+                next()
+            }
+       }catch{
+            next()
+       }
+    }
 }
 module.exports =new middleware

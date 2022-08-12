@@ -1,30 +1,38 @@
+<style>
+  .text{
+   
+    max-height: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+</style>
 <div class="container">
-    <div class="row mb-1">
-        {{#each courses}}
-        <div class="col-md-6"  onclick="window.location='/{{this.slug}}'">
-            <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                <div class="col p-4 d-flex flex-column position-static">
-                    <strong class="d-inline-block mb-2 text-primary">Đề tài: </strong>
-                    <h3 class="mb-0">{{this.title}}</h3>
-                    <div class="mb-1 text-muted">Nov 12</div>
-                    <p class="card-text mb-auto" style="text-overflow: ellipsis;">{{this.body}}</p>
-                    <a href="#" class="stretched-link">Reading</a>
-                </div>
-                <div class="col-auto d-none d-lg-block">
-                    <img class="bd-placeholder-img" src="{{this.img}}">
-                </div>
-            </div>
+  <div class="row">
+    {{#each courses}}
+    <div class="col-sm-6">
+      <div class="card"  onclick="window.location='/{{this.slug}}'">
+        <div class="card-body">
+          <h5 class="card-title">{{this.title}}</h5>
+          <h6 class="card-title">Tác giả: {{fullname this.author.firstname this.author.lastname}}</h6>
+          <div class="text">
+            {{{this.body}}}
+          </div>
+          <a href="#">Đọc tiếp</a>
         </div>
-        {{/each}}
+      </div>
     </div>
-    
+    {{/each}}
+  </div> 
 </div>
+<div></div>
 <div class="container">
-<nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center" id="pagiul">
-    
-    </ul>
-</nav>
+  <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center" id="pagiul">
+      
+      </ul>
+  </nav>
 </div>
 <div id="pages_total" style="display: none;">{{pages}}</div>
 <div id="pages_current" style="display: none;">{{current}}</div>
@@ -86,4 +94,4 @@
     load()
     
 })
-  </script>
+</script>

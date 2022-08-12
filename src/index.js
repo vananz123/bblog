@@ -10,14 +10,15 @@ const session = require('express-session')
 const cookieParser = require('cookie-parser')
 const jwt =require('jsonwebtoken')
 const Users =require('./app/models/Users')
-
 require('dotenv').config()
 app.engine('hbs', hbs.engine({
   extname: ".hbs",
   helpers: {
     sum(a,b){ return a+b;},
     fullname(a,b){ return a+' '+ b;},
-    checkIdEdit(a,b){return a==b ? true:false}
+    checkIdEdit:(a)=>{
+      return `wewe`
+    }
   },
   partialsDir:path.join(__dirname,'resources', 'views','partials')
 }));

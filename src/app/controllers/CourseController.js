@@ -18,8 +18,8 @@ class CourseController {
     async showComment(req,res,next){
         try{
             const comments =await Comment.find({idcourse:req.course._id}).lean()
-            .populate({path:'author' ,select:['img','firstname','lastname']})
-            .populate({path:'replay.author'})
+            .populate({path:'userId'})
+            .populate({path:'replay.userId'})
             req.comments =comments
             next()
         }catch{
@@ -30,12 +30,13 @@ class CourseController {
     show(req,res,next){
         const course =req.course
         const comments =req.comments
-        res.render('course/show',{course,comments})
+        const authorComment =req.iduser
+        res.render('course/show',{course,comments,authorComment})
     }
     showAll(req,res,next){
         let perPage = 4; // số lượng sản phẩm xuất hiện trên 1 page
         let page = req.params.page || 1; 
-        Course.find({}).lean()
+        Course.find({}).lean().populate({path:'author'})
             .skip((perPage * page) - perPage) // Trong page đầu tiên sẽ bỏ qua giá trị là 0
             .limit(perPage)
             .exec((err,courses)=>{
