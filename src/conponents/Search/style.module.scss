@@ -1,0 +1,25 @@
+.search {
+    width:23rem;
+    height:3rem;
+    background-color: #f6f9fc;
+    color: #1c1f23;
+    align-items: center;
+    border-radius: 25px;
+    font-size: 80%;
+    line-height: 1.6rem;
+    display: flex;
+    margin-right:1rem;
+}
+.search .iconSearch {
+    margin:0 15px 0 20px;
+    cursor: pointer;
+}
+.search input{
+    background-color: inherit;
+    width: 75%;
+    outline:none;
+    border: none;
+}
+.searchResult{
+    width: 23rem;
+}

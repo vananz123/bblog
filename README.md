@@ -1,2 +1,0 @@
-# bblog
-ex add vercel

@@ -1,0 +1,28 @@
+.header{
+    width: 100%;
+}
+.nav.nav-pills button{
+    margin-right: 1rem;
+    border-radius: 5px;
+    height: 3rem;
+    font-weight: 600;
+}
+
+.header-right{
+    width:auto;
+    height:3rem;
+}
+.header-right .acc{
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background-color: #f6f9fc;
+    align-items: center;
+}
+.header-right .icon{
+    transform: translateY(50%);
+}
+
+.danh-muc .tt{
+    width: 100%;
+}
